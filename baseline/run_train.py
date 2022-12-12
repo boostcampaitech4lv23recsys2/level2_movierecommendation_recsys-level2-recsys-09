@@ -91,7 +91,7 @@ def main():
     args.attribute_size = attribute_size + 1
 
     # save model args
-    args_str = f"{args.model_name}-{args.data_name}"
+    args_str = f"{args.model_name}-{args.data_name}-{args.using_pretrain}"
     args.log_file = os.path.join(args.output_dir, args_str + ".txt")
     print(str(args))
 
