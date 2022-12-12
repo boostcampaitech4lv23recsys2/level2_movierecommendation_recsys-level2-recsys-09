@@ -27,5 +27,6 @@ pip install -r requirements.txt
       ```
 3. Inference
    ```
+   python inference.py --using_pretrain
    python inference.py
    ```
