@@ -1,4 +1,6 @@
 # by KCH
 __pycache__
 output/
+model/
 github.txt
+*.pt
