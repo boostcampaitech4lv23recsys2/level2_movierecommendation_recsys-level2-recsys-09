@@ -39,13 +39,9 @@ def main(args):
     p_dims = [200, 600, n_items]
     if args.is_VAE:
         model = MultiVAE(p_dims).to(device)
-        with open(weight_dir, 'rb') as model_state:
-            model = model.load(model_state)
         criterion = loss_function_vae
     else:
         model = MultiDAE(p_dims).to(device)
-        with open(weight_dir, 'rb') as model_state:
-            model = model.load(model_state)
         criterion = loss_function_dae
 
     ###############################################################################

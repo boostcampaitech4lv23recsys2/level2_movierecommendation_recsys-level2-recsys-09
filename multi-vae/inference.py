@@ -45,9 +45,13 @@ def main(args):
     p_dims = [200, 600, n_items]
     if args.is_VAE:
         model = MultiVAE(p_dims).to(device)
+        with open(weight_dir, 'rb') as model_state:
+            model = torch.load(model_state)
         criterion = loss_function_vae
     else:
         model = MultiDAE(p_dims).to(device)
+        with open(weight_dir, 'rb') as model_state:
+            model = torch.load(model_state)
         criterion = loss_function_dae
 
     ###############################################################################
@@ -71,7 +75,7 @@ def main(args):
     rprofile2id = dict((i, pid) for (i, pid) in enumerate(unique_uid))
     submit_df = reverse_numerize(submit, rshow2id, rprofile2id)
     submit_df.sort_values(by='user',inplace=True)
-    
+
     if not os.path.exists(args.submit_path):
         os.makedirs(args.submit_path)
     submit_df.to_csv(os.path.join(args.submit_path,"submission.csv"), index=False)
