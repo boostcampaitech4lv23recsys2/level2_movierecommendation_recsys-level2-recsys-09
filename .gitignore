@@ -1,4 +1,10 @@
-# by KCH
 __pycache__
 output/
 github.txt
+
+.*
+data.tar.gz
+*.tsv
+*.csv
+/Multi-VAE/data
+*.pt
