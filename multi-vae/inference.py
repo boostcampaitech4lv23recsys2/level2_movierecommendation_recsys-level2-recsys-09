@@ -44,11 +44,13 @@ def main(args):
 
     p_dims = [200, 600, n_items]
     if args.is_VAE:
+        print('[Model] using Mult-VAE')
         model = MultiVAE(p_dims).to(device)
         with open(weight_dir, 'rb') as model_state:
             model = torch.load(model_state)
         criterion = loss_function_vae
     else:
+        print('[Model] using Mult-DAE')
         model = MultiDAE(p_dims).to(device)
         with open(weight_dir, 'rb') as model_state:
             model = torch.load(model_state)
@@ -67,7 +69,7 @@ def main(args):
     pred = [[], []]
     for u, i in enumerate(recon_list):
         pred[0].append([u]*10)
-        pred[1].append(np.argsort(i)[-10:])
+        pred[1].append(np.argsort(i)[-10:][::-1])
     pred[0] = np.concatenate(pred[0])
     pred[1] = np.concatenate(pred[1])
     submit = pd.DataFrame(data={'ui': pred[0], 'ii': pred[1]}, columns=['ui', 'ii'])
@@ -87,10 +89,10 @@ if __name__ == "__main__":
     parser.add_argument('--submit_path', type=str, default='./output')
     parser.add_argument('--data', type=str, default='../../data/train/',
                         help='Movielens dataset location')
-    parser.add_argument('--dataset_create', type=bool, default=False,
+    parser.add_argument('--dataset_create', action='store_true',
                         help='create preprocessed data file')
-    parser.add_argument('--is_VAE', type=bool, default=True,
-                        help='if True use VAE else DAE')
+    parser.add_argument('--is_VAE', action='store_true',
+                        help='to use VAE')
     parser.add_argument('--lr', type=float, default=1e-3,
                         help='initial learning rate')
     parser.add_argument('--wd', type=float, default=0.00,
@@ -111,7 +113,7 @@ if __name__ == "__main__":
                         help='report interval')
     parser.add_argument('--save', type=str, default='./weight',
                         help='path to save the final model')
-    args = parser.parse_args([])
+    args = parser.parse_args()
 
     # Set the random seed manually for reproductibility.
     torch.manual_seed(args.seed)

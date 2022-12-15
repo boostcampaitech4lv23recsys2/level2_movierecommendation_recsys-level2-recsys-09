@@ -38,9 +38,11 @@ def main(args):
 
     p_dims = [200, 600, n_items]
     if args.is_VAE:
+        print('[Model] using Mult-VAE')
         model = MultiVAE(p_dims).to(device)
         criterion = loss_function_vae
     else:
+        print('[Model] using Mult-DAE')
         model = MultiDAE(p_dims).to(device)
         criterion = loss_function_dae
 
@@ -58,10 +60,10 @@ if __name__ == "__main__":
 
     parser.add_argument('--data', type=str, default='../../data/train/',
                         help='Movielens dataset location')
-    parser.add_argument('--dataset_create', type=bool, default=False,
+    parser.add_argument('--dataset_create', action='store_true',
                         help='create preprocessed data file')
-    parser.add_argument('--is_VAE', type=bool, default=True,
-                        help='if True use VAE else DAE')
+    parser.add_argument('--is_VAE', action='store_true',
+                        help='to use VAE')
     parser.add_argument('--lr', type=float, default=1e-3,
                         help='initial learning rate')
     parser.add_argument('--wd', type=float, default=0.00,
