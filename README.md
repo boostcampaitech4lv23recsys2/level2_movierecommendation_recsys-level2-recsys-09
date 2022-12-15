@@ -6,4 +6,4 @@
 
 ## 코드 구조도 🗂️
 
-![코드 구조도 drawio](https://user-images.githubusercontent.com/94108712/207004584-1d029443-2b12-4bde-9088-ed2028f65d58.png)
+![코드 구조도](https://user-images.githubusercontent.com/94108712/207740509-2f4fb817-5ea9-423c-8b76-6d48fdc9d6ae.png)
