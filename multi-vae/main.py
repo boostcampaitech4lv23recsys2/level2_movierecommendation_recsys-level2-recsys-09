@@ -5,19 +5,26 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
-
 from scipy import sparse
+
 from model import MultiDAE, MultiVAE, loss_function_dae, loss_function_vae
 from data import DataLoader
 from trainer import trainer
+from utils import wandb_setup, seed_everything
 
 def main(args):
+    seed_everything(args.seed)
+
     # TODO VAE와 DAE의 저장 파일 이름 다르게 만들기
     weight_dir = os.path.join(args.save, 'model.pt')
 
     if not os.path.exists(args.save):
         os.makedirs(args.save)
     args.save = weight_dir
+
+    # wandb 설정
+    wandb_setup(args)
+    
     ###############################################################################
     # Load data
     ###############################################################################
@@ -49,6 +56,7 @@ def main(args):
     ###############################################################################
     # Training code
     ###############################################################################
+
     runner = trainer(model, criterion, args)
     runner.run()
 
@@ -85,9 +93,6 @@ if __name__ == "__main__":
     parser.add_argument('--save', type=str, default='./weight',
                         help='path to save the final model')
     args = parser.parse_args()
-
-    # Set the random seed manually for reproductibility.
-    torch.manual_seed(args.seed)
 
     #만약 GPU가 사용가능한 환경이라면 GPU를 사용
     if torch.cuda.is_available():

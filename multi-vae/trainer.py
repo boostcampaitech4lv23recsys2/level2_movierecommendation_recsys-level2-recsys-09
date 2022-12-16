@@ -6,7 +6,7 @@ from torch import optim
 from scipy import sparse
 
 from metric import NDCG_binary_at_k_batch, Recall_at_k_batch
-
+from utils import wandb_upload
 
 def sparse2torch_sparse(data):
     """
@@ -152,7 +152,6 @@ class trainer():
         self.N = self.args.data['train'].shape[0]
         self.idxlist = list(range(self.N))
 
-        best_n100 = -np.inf
         best_r10 = -np.inf
         self.update_count = 0
         for epoch in range(1, self.args.epochs + 1):
@@ -169,16 +168,13 @@ class trainer():
             n_iter = epoch * len(range(0, self.N, self.args.batch_size))
 
 
-            # Save the self.model if the n100 is the best we've seen so far.
-            # if n100 > best_n100:
-            #     with open(self.args.save, 'wb') as f:
-            #         torch.save(self.model, f)
-            #     best_n100 = n100
+            # Save the self.model if the r10 is the best we've seen so far.
             if r10 > best_r10:
                 with open(self.args.save, 'wb') as f:
                     torch.save(self.model, f)
                 best_r10 = r10
-
+            wandb_upload(dataset='valid',epoch=epoch, valid_loss=val_loss, best_recall10=best_r10,
+                        ndcg100=n100, recall10=r10)
 
 
         # Load the best saved self.model.
@@ -191,6 +187,7 @@ class trainer():
         print('| End of training | test loss {:4.2f} | n100 {:4.2f} | r10 {:4.2f} | r20 {:4.2f} | '
                 'r50 {:4.2f}'.format(test_loss, n100, r10, r20, r50))
         print('=' * 102)
+        wandb_upload(dataset='test', test_loss=test_loss, test_ndcg100=n100, test_recall10=r10)
 
     def inference(self, inference_sdata):
         self.model.eval()
