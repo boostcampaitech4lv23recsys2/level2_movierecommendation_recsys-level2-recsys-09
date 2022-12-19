@@ -5,7 +5,7 @@ import torch
 import wandb
 
 
-def wandb_setup(args, exclude = ['data','dataset_create','cuda','log_interval']):
+def wandb_setup(args, exclude = ['data','dataset_create','cuda','log_interval','encode_dim','bn_dim','decode_dim']):
     wandb.init(project="Mult-AutoEncoder", entity="likesubscriberecommendai")
 
     exclude = set(exclude)

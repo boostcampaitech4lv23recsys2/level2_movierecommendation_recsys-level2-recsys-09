@@ -22,6 +22,9 @@ def main(args):
         os.makedirs(args.save)
     args.save = weight_dir
 
+    # wandb 기록 용 layer dimension 저장
+    args.layer_dims = str([args.encode_dim,args.bn_dim,args.decode_dim])
+
     # wandb 설정
     wandb_setup(args)
     
@@ -35,22 +38,20 @@ def main(args):
     args.data['train'] = loader.load_data('train')
     args.data['valid'] = loader.load_data('validation')
     args.data['test'] = loader.load_data('test')
-    # train_data = loader.load_data('train')
-    # vad_data_tr, vad_data_te = loader.load_data('validation')
-    # test_data_tr, test_data_te = loader.load_data('test')
 
     ###############################################################################
     # Build the model
     ###############################################################################
-
-    p_dims = [200, 600, n_items]
+    # best dims
+    p_dims = [args.bn_dim, args.decode_dim, n_items]
+    q_dims = [n_items, args.decode_dim, args.bn_dim]
     if args.is_VAE:
         print('[Model] using Mult-VAE')
-        model = MultiVAE(p_dims).to(device)
+        model = MultiVAE(p_dims, q_dims, args.dropout).to(args.device)
         criterion = loss_function_vae
     else:
         print('[Model] using Mult-DAE')
-        model = MultiDAE(p_dims).to(device)
+        model = MultiDAE(p_dims, q_dims, args.dropout).to(args.device)
         criterion = loss_function_dae
 
     ###############################################################################
@@ -63,7 +64,7 @@ def main(args):
 
 if __name__ == "__main__":
     ## 각종 파라미터 세팅
-    parser = argparse.ArgumentParser(description='PyTorch Variational Autoencoders for Collaborative Filtering')
+    parser = argparse.ArgumentParser(description='PyTorch Mult-Autoencoders for Collaborative Filtering')
 
 
     parser.add_argument('--data', type=str, default='../../data/train/',
@@ -80,6 +81,14 @@ if __name__ == "__main__":
                         help='batch size')
     parser.add_argument('--epochs', type=int, default=20,
                         help='upper epoch limit')
+    parser.add_argument('--dropout', type=float, default=0.5,
+                        help='drop out ratio of model')
+    parser.add_argument('--encode_dim', type=int, default=500,
+                        help='dimention of encode layer')
+    parser.add_argument('--bn_dim', type=int, default=200,
+                        help='dimention of bottle-neck layer')
+    parser.add_argument('--decode_dim', type=int, default=600,
+                        help='dimention of decode layer')
     parser.add_argument('--total_anneal_steps', type=int, default=200000,
                         help='the total number of gradient updates for annealing')
     parser.add_argument('--anneal_cap', type=float, default=0.2,
@@ -98,7 +107,6 @@ if __name__ == "__main__":
     if torch.cuda.is_available():
         args.cuda = True
 
-    device = torch.device("cuda" if args.cuda else "cpu")
-    args.device = device
-    print("using",device)
+    args.device = torch.device("cuda" if args.cuda else "cpu")
+    print("using",args.device)
     main(args)

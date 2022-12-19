@@ -45,15 +45,13 @@ def main(args):
     p_dims = [200, 600, n_items]
     if args.is_VAE:
         print('[Model] using Mult-VAE')
-        model = MultiVAE(p_dims).to(device)
         with open(weight_dir, 'rb') as model_state:
-            model = torch.load(model_state)
+            model = torch.load(model_state,map_location=args.device)
         criterion = loss_function_vae
     else:
         print('[Model] using Mult-DAE')
-        model = MultiDAE(p_dims).to(device)
         with open(weight_dir, 'rb') as model_state:
-            model = torch.load(model_state)
+            model = torch.load(model_state,map_location=args.device)
         criterion = loss_function_dae
 
     ###############################################################################
@@ -99,8 +97,6 @@ if __name__ == "__main__":
                         help='weight decay coefficient')
     parser.add_argument('--batch_size', type=int, default=500,
                         help='batch size')
-    parser.add_argument('--epochs', type=int, default=20,
-                        help='upper epoch limit')
     parser.add_argument('--total_anneal_steps', type=int, default=200000,
                         help='the total number of gradient updates for annealing')
     parser.add_argument('--anneal_cap', type=float, default=0.2,
@@ -122,7 +118,6 @@ if __name__ == "__main__":
     if torch.cuda.is_available():
         args.cuda = True
 
-    device = torch.device("cuda" if args.cuda else "cpu")
-    args.device = device
-    print("using",device)
+    args.device = torch.device("cuda" if args.cuda else "cpu")
+    print("using",args.device)
     main(args)
