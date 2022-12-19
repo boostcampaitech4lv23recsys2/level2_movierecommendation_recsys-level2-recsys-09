@@ -91,7 +91,7 @@ def main():
     args.attribute_size = attribute_size + 1
 
     # save model args
-    args_str = f"{args.model_name}-{args.data_name}-{args.using_pretrain}"
+    args_str = f"{args.model_name}-{args.data_name}-{args.using_pretrain}"  # pretrain 사용 여부를 모델 파일 이름에 반영
     args.log_file = os.path.join(args.output_dir, args_str + ".txt")
     print(str(args))
 
