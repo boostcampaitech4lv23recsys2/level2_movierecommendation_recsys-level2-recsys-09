@@ -1,16 +1,11 @@
 __pycache__
 output/
-<<<<<<< HEAD
 github.txt
 
 .*
 data.tar.gz
 *.tsv
 *.csv
-/Multi-VAE/data
-=======
-model/
-submit/
-github.txt
->>>>>>> KCH
+/multi-vae/model
 *.pt
+
