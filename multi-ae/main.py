@@ -44,7 +44,7 @@ def main(args):
     ###############################################################################
     # best dims
     p_dims = [args.bn_dim, args.decode_dim, n_items]
-    q_dims = [n_items, args.decode_dim, args.bn_dim]
+    q_dims = [n_items, args.encode_dim, args.bn_dim]
     if args.is_VAE:
         print('[Model] using Mult-VAE')
         model = MultiVAE(p_dims, q_dims, args.dropout).to(args.device)
