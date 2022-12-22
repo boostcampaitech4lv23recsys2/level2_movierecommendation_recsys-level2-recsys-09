@@ -17,6 +17,7 @@
     - Make Multi-dae Folder
     - Update sasrec in models.py
     - **Dictionary**
+    
     |영어 단어|설명|
     |------|------|
     |Fix|올바르지 않은 동작을 고침|
@@ -40,6 +41,7 @@
     |Verify|검증 코드|
     |Set|변수 값을 변경하는 등의 작은 수정|
     |Pass|파라메터를 넘기는 처리|
+    
 - Github Issue에 자신이 해야할 일 또는 작업 목표를 작성하고 안에 진행사항 공유
     - **Examples**
     - Bert4rec Inference part 금일 수정 예정
