@@ -11,7 +11,7 @@
 ### 협업
 
 - Github 사용할 때, 코드 파일만 공유
-- 커밋 메세지 컨벤션 수정 ⇒ 명령문 (동사) (무엇을) (파일)
+- 커밋 메세지 컨벤션 수정 ⇒ 명령문 (동사) (무엇을) (파일), 여러 개의 명령문을 작성할 때는 &로 연결
     - **Examples**
     - Fix argparse in main.py and inference.py
     - Make Multi-dae Folder
