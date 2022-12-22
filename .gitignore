@@ -117,5 +117,8 @@ __MACOSX/
 # by KCH
 __pycache__
 output/
+model/
+submit/
 github.txt
 weight/
+*.pt
