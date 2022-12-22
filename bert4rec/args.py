@@ -1,0 +1,18 @@
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--max_len', type=int, default=50)
+parser.add_argument('--hidden_units', type=int, default=50)
+parser.add_argument('--num_heads', type=int, default=1)
+parser.add_argument('--num_layers', type=int, default=2)
+parser.add_argument('--dropout_rate', type=float, default=0.5)
+parser.add_argument('--num_workers', type=int, default=-1)
+parser.add_argument('--device', type=str, default='cuda')
+parser.add_argument('--lr', type=float, default=0.001)
+parser.add_argument('--batch_size', type=float, default=128)
+parser.add_argument('--num_epochs', type=int, default=200)
+parser.add_argument('--early_stopping', type=int, default=20)
+parser.add_argument('--mask_prob', type=float, default=0.15)
+parser.add_argument('--data_path', type=str, default="/opt/ml/input/data/train/train_ratings.csv")
+parser.add_argument('--model_path', type=str, default="/opt/ml/input/bert4rec/model.pt")
+parser.add_argument('--sub_path', type=str, default="/opt/ml/input/bert4rec/sub/")
