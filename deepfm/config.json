@@ -1,0 +1,15 @@
+{
+    "device": "cuda",
+    "embedding_dim": 10,
+    "mlp_dims": [30, 20, 10],
+    "lr": 0.01, 
+    "num_epochs": 10,
+
+    "train_ratio": 0.9,
+
+    "ouput_path": "./submit/",
+    "submit_filename": "deepfm_submission.csv",
+
+    "model_path": "./model/",
+    "model_filename": "model.pt"
+}
