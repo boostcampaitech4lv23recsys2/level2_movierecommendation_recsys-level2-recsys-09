@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 __pycache__
 output/
 github.txt
@@ -7,10 +6,9 @@ github.txt
 data.tar.gz
 *.tsv
 *.csv
-/multi-vae/model
+model/
 *.pt
 
-=======
 __pycache__/
 *.py[cod]
 *$py.class
@@ -132,4 +130,3 @@ __pycache__
 output/
 github.txt
 weight/
->>>>>>> main
