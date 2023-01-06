@@ -44,7 +44,7 @@
 <br /> 
 <br /> 
 
-## 🏅 Result : Public 5th > Privite 3rd
+## 🏅 Result : Public 6th > Privite 5th
 
 |리더보드| Recall@10 | 순위 |
 |:--------:|:------:|:----------:|
