@@ -1,6 +1,6 @@
-# 9️⃣ boostcamp AI Tech 4th - RecSys
+![스크린샷 2023-01-06 오전 9 15 45](https://user-images.githubusercontent.com/94108712/210904175-1db22a0d-97be-438b-8af0-24214a5342af.png)
 
----
+# 9️⃣ boostcamp AI Tech 4th - RecSys
 
 ## 👪 Members
 | [<img src="https://avatars.githubusercontent.com/u/94108712?v=4" width="200px">](https://github.com/KChanho) | [<img src="https://avatars.githubusercontent.com/u/22442453?v=4" width="200px">](https://github.com/sungsubae) | [<img src="https://avatars.githubusercontent.com/u/28619804?v=4" width="200px">](https://github.com/JJI-Hoon) | [<img src="https://avatars.githubusercontent.com/u/71113430?v=4" width="200px">](https://github.com/sobin98) | [<img src="https://avatars.githubusercontent.com/u/75313644?v=4" width="200px">](https://github.com/dnjstka0307) |
@@ -50,8 +50,6 @@
 |:--------:|:------:|:----------:|
 |public| 0.1646 | **6위** |
 |private| 0.1634 | **최종 5위** |
-
-stratified kfold를 통해 일반화 성능을 향상시켜 private에서 더 좋은 성과를 냄.
 
 <br /> 
 <br /> 
