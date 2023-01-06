@@ -32,14 +32,13 @@
 
 ## 🗃 Project Process
 
-### 🤖 Models
+### 🤖 Model
 모델 설명
 
 <br /> 
 
 ### 📈 Ensemble
-계열별로 Public기준의 최적모델을 확인, Prediction의 분포를 시각화해 확인 후, Weight 실험 후 앙상블 진행.
-![image](https://user-images.githubusercontent.com/75313644/206643037-bee27388-6dde-474e-a7bb-958128b54724.png)
+앙상블 설명
 
 <br /> 
 <br /> 
