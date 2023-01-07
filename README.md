@@ -25,7 +25,7 @@
 <br /> 
 
 ## 💻 Repository Summary
-![코드 구조도 drawio](https://user-images.githubusercontent.com/94108712/208797052-82871c40-05b1-49c6-aee3-a4145717c7e3.png)
+![코드 구조도 drawio](https://user-images.githubusercontent.com/94108712/211151400-d7469957-c0db-48d2-8765-8ecc9e4c3270.png)
 
 <br /> 
 <br /> 
