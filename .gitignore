@@ -128,6 +128,11 @@ __MACOSX/
 # by KCH
 __pycache__
 output/
+model/
+submit/
 github.txt
 weight/
-saved/
+*.pt
+
+# by LJH
+multi-dae/
