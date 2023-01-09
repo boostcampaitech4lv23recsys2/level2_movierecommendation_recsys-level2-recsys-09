@@ -67,7 +67,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='PyTorch Mult-Autoencoders for Collaborative Filtering')
 
 
-    parser.add_argument('--data', type=str, default='../../data/train/',
+    parser.add_argument('--data', type=str, default='../../input/data/train/',
                         help='Movielens dataset location')
     parser.add_argument('--dataset_create', action='store_true',
                         help='create preprocessed data file')
@@ -75,19 +75,19 @@ if __name__ == "__main__":
                         help='to use VAE')
     parser.add_argument('--lr', type=float, default=1e-3,
                         help='initial learning rate')
-    parser.add_argument('--wd', type=float, default=0.00,
+    parser.add_argument('--wd', type=float, default=0.01,
                         help='weight decay coefficient')
     parser.add_argument('--batch_size', type=int, default=500,
                         help='batch size')
-    parser.add_argument('--epochs', type=int, default=20,
+    parser.add_argument('--epochs', type=int, default=400,
                         help='upper epoch limit')
     parser.add_argument('--dropout', type=float, default=0.5,
                         help='drop out ratio of model')
-    parser.add_argument('--encode_dim', type=int, default=500,
+    parser.add_argument('--encode_dim', type=int, default=1200,
                         help='dimention of encode layer')
-    parser.add_argument('--bn_dim', type=int, default=200,
+    parser.add_argument('--bn_dim', type=int, default=100,
                         help='dimention of bottle-neck layer')
-    parser.add_argument('--decode_dim', type=int, default=600,
+    parser.add_argument('--decode_dim', type=int, default=2400,
                         help='dimention of decode layer')
     parser.add_argument('--total_anneal_steps', type=int, default=200000,
                         help='the total number of gradient updates for annealing')
