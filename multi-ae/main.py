@@ -7,7 +7,7 @@ import torch.optim as optim
 import numpy as np
 from scipy import sparse
 
-from model import MultiDAE, MultiVAE, loss_function_dae, loss_function_vae
+from model import MultiDAE, MultiVAE, loss_function_dae, loss_function_vae, loss_function_mse
 from data import DataLoader
 from trainer import trainer
 from utils import wandb_setup, seed_everything
@@ -52,7 +52,8 @@ def main(args):
     else:
         print('[Model] using Mult-DAE')
         model = MultiDAE(p_dims, q_dims, args.dropout).to(args.device)
-        criterion = loss_function_dae
+        # criterion = loss_function_dae
+        criterion = loss_function_mse
 
     ###############################################################################
     # Training code

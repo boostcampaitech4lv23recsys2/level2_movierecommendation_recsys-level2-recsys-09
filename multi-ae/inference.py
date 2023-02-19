@@ -64,17 +64,26 @@ def main(args):
     ###############################################################################
     # Save top 10 recommended data
     ###############################################################################
-    pred = [[], []]
+    pred = [[], [],[]]
     for u, i in enumerate(recon_list):
-        pred[0].append([u]*10)
-        pred[1].append(np.argsort(i)[-10:][::-1])
+        pred[0].append([u]*20)
+        pred[1].append(np.argsort(i)[-20:][::-1])
+        # print(i[pred[1][-1]])
+        # quit(1)
+        pred[2].append(i[pred[1][-1]])
     pred[0] = np.concatenate(pred[0])
     pred[1] = np.concatenate(pred[1])
-    submit = pd.DataFrame(data={'ui': pred[0], 'ii': pred[1]}, columns=['ui', 'ii'])
+    pred[2] = np.concatenate(pred[2])
+    
+    submit = pd.DataFrame(data={'ui': pred[0], 'ii': pred[1],'pred':pred[2]}, columns=['ui', 'ii','pred'])
     rshow2id = dict((i, sid) for (i, sid) in enumerate(unique_sid))
     rprofile2id = dict((i, pid) for (i, pid) in enumerate(unique_uid))
     submit_df = reverse_numerize(submit, rshow2id, rprofile2id)
-    submit_df.sort_values(by='user',inplace=True)
+    submit_df['pred'] = -submit['pred']
+    print(submit_df.head(20))
+    submit_df.sort_values(by=['user','pred'],inplace=True)
+    submit_df['pred'] = -submit_df['pred']
+    print(submit_df.head(20))
 
     if not os.path.exists(args.submit_path):
         os.makedirs(args.submit_path)
