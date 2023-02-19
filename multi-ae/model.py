@@ -38,7 +38,7 @@ class MultiDAE(nn.Module):
             self.q_dims = q_dims
         else:
             self.q_dims = p_dims[::-1]
-
+        
         self.dims = self.q_dims + self.p_dims[1:]
         self.layers = nn.ModuleList([nn.Linear(d_in, d_out) for
             d_in, d_out in zip(self.dims[:-1], self.dims[1:])])
